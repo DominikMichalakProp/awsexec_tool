@@ -37,7 +37,7 @@ def construct_command(cluster_name: str, task_id: str, container_name: str, comm
     return f'aws ecs execute-command --cluster {cluster_name} --task {task_id} --container {container_name} --command "{command_to_execute}" --interactive --profile {profile_name} --region {region}'
 
 def confirm_execution() -> bool:
-    confirmation = input("Czy chcesz wykonać to polecenie? (y/n): ")
+    confirmation = input("Do you want to execute the command? (y/n): ")
     return confirmation.lower() == "y"
 
 def main():
@@ -67,14 +67,14 @@ def main():
 
     command_to_execute = ask_user_input("Command for connection (default /bin/sh):", "/bin/sh")
     command = construct_command(clusters[cluster_index].split('/')[-1], tasks[task_index].split('/')[-1], containers[container_index]['name'], command_to_execute, profile_name, region)
-    print(f"\nTwoje polecenie: \n{command}\n")
+    print(f"\nYour command: \n{command}\n")
 
     if confirm_execution():
-        print("Wykonywanie polecenia...")
+        print("Executing the command...")
         os.system(command)
-        print("Polecenie zostało wykonane")
+        print("The command has been executed")
     else:
-        print("Wykonanie polecenia zostało przerwane")
+        print("Command execution aborted")
 
 if __name__ == "__main__":
     main()
