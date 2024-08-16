@@ -1,14 +1,12 @@
-# Importowanie wymaganych modułów
 import os
 import subprocess
 import json
 
-# Importujemy moduł readline, który pozwala na lepsze zarządzanie interfejsem wprowadzania danych przez użytkownika.
 try:
     import readline
 except ImportError:
     try:
-        import pyreadline as readline  # dla Windows
+        import pyreadline as readline  # Windows
     except ImportError:
         print("Nie można zaimportować readline. Edycja linii może nie działać.")
         readline = None
